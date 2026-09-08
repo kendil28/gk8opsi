@@ -1,0 +1,675 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GK8 Indonesia Gaming adalah platform igaming yang aman dan terpercaya dengan pilihan game terbaik dan terlengkap dengan standar keamanan tinggi, dan layanan pelanggan bertaraf dunia.">
+    <title>GK8 - Terpercaya Unggul Dan Bertaraf Dunia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Mobile override — force center ALL hero elements comprehensively -->
+    <style>
+    @media screen and (max-width: 768px) {
+        html, body {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+        }
+        .page-section,
+        .main-content,
+        .dashboard-grid {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        .main-content {
+            padding: 12px !important;
+            min-height: unset !important;
+        }
+        .dashboard-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+            margin: 0 !important;
+        }
+
+        /* Row 1: Video card */
+        .hero-center {
+            grid-column: 1 !important; grid-row: 1 !important;
+            width: 100% !important; max-width: 100% !important;
+            padding: 0 !important; margin: 0 !important;
+        }
+        .card-3d-wrapper, .card-container {
+            width: 100% !important; max-width: 100% !important;
+            margin: 0 !important; overflow: hidden !important;
+        }
+        .card-corner-logo { height: 28px !important; top: 10px !important; right: 12px !important; }
+
+        /* Row 2: Country picker */
+        .hero-right {
+            grid-column: 1 !important; grid-row: 2 !important;
+            display: flex !important; flex-direction: column !important;
+            align-items: center !important; width: 100% !important;
+            padding: 0 !important; margin: 0 !important;
+        }
+        .hero-right .country-picker-container {
+            display: flex !important; flex-direction: column !important;
+            align-items: center !important; width: 100% !important; max-width: 100% !important;
+        }
+        .hero-right .picker-header {
+            display: flex !important; flex-direction: row !important;
+            justify-content: center !important; align-items: center !important;
+            width: 100% !important; gap: 10px !important; margin-bottom: 12px !important;
+        }
+        .hero-right .picker-title { text-align: center !important; }
+        .hero-right .picker-body {
+            display: flex !important; flex-direction: column !important;
+            align-items: center !important; width: 100% !important; gap: 10px !important;
+        }
+        .hero-right .country-carousel-viewport { width: 100% !important; height: 90px !important; }
+        .hero-right .country-carousel-track { display: flex !important; flex-direction: row !important; }
+        .hero-right .country-item {
+            width: 80px !important; height: 90px !important; flex-shrink: 0 !important;
+            display: flex !important; flex-direction: column !important;
+            align-items: center !important; justify-content: center !important;
+        }
+        .hero-right .carousel-arrows {
+            display: flex !important; flex-direction: row !important;
+            justify-content: center !important; width: 100% !important; gap: 16px !important;
+        }
+
+        /* Row 3: Text & CTA */
+        .hero-left {
+            grid-column: 1 !important; grid-row: 3 !important;
+            display: flex !important; flex-direction: column !important;
+            align-items: center !important; text-align: center !important;
+            width: 100% !important; max-width: 100% !important;
+            padding: 0 !important; margin: 0 !important;
+        }
+        .hero-left .hero-brand {
+            width: 100% !important; display: flex !important; justify-content: center !important;
+        }
+        .hero-left .hero-brand-img {
+            height: 52px !important; display: block !important; margin: 0 auto !important;
+        }
+        .hero-left .hero-title {
+            text-align: center !important; font-size: 20px !important;
+            width: 100% !important; max-width: 100% !important;
+            overflow-wrap: break-word !important;
+        }
+        .hero-left .hero-desc {
+            text-align: center !important; font-size: 13px !important;
+            width: 100% !important; max-width: 100% !important;
+            overflow-wrap: break-word !important;
+        }
+        .hero-left .hero-cta-group {
+            display: flex !important; flex-direction: column !important;
+            align-items: stretch !important; width: 100% !important;
+            gap: 12px !important; margin-bottom: 28px !important;
+        }
+        .hero-left .btn {
+            width: 100% !important; display: flex !important;
+            justify-content: center !important;
+        }
+        .hero-left .follow-section { justify-content: center !important; width: 100% !important; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background Layers -->
+    <div class="bg-layer bg-layer--prev" id="bgPrev"></div>
+    <div class="bg-layer bg-layer--next" id="bgNext"></div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="brand-logo" id="mainLogo" aria-label="GK8 Beranda">
+                <img src="assets/extracted/gk8-nav-logo.png" alt="GK8 Logo" class="nav-logo-img"
+                     onerror="this.src='assets/gk8-nav-logo.png'">
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#" class="nav-item active" data-page="beranda">BERANDA</a>
+                <a href="#" class="nav-item" data-page="tentang">TENTANG KAMI</a>
+                <a href="#" class="nav-item" data-page="ketentuan">KETENTUAN &amp; PRIVASI</a>
+                <a href="#" class="nav-item" data-page="alternatif">LINK ALTERNATIF</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="search-btn" id="searchBtn" aria-label="Cari">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu Navigasi">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <div class="search-input-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Cari game, informasi, atau bantuan..." autocomplete="off">
+                <button class="search-close-btn" id="searchCloseBtn" aria-label="Tutup">&times;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         PAGE: BERANDA
+         ================================================================ -->
+    <div id="page-beranda" class="page-section">
+
+        <main class="main-content">
+            <div class="dashboard-grid">
+
+                <!-- Left: text + CTA -->
+                <section class="hero-left">
+                    <div class="hero-brand">
+                        <img src="assets/extracted/gk8-hero-logo.png" alt="GK8" class="hero-brand-img"
+                             onerror="this.src='assets/gk8-hero-logo.png'">
+                    </div>
+                    <h1 class="hero-title">GK8 – Terpercaya Unggul Dan<br>Bertaraf Dunia</h1>
+                    <p class="hero-desc">GK8 Indonesia Gaming adalah platform igaming yang aman dan terpercaya dengan pilihan game terbaik dan terlengkap dengan standar keamanan tinggi, dan layanan pelanggan yang sangat responsif yang memastikan kenyamanan Anda saat menggunakan platform kami. Anda dapat memainkan banyak game berbeda untuk banyak penyedia hanya dengan satu akun tunggal.</p>
+                    <div class="hero-cta-group">
+                        <a href="#" class="btn btn-primary" id="btnGabung">GABUNG SEKARANG</a>
+                        <a href="#" class="btn btn-secondary" id="btnSponsor">GK8 SPONSOR</a>
+                    </div>
+                    <div class="follow-section">
+                        <span class="follow-label">Follow Us</span>
+                        <span class="follow-divider" aria-hidden="true"></span>
+                        <div class="social-links">
+                            <a href="https://instagram.com/gk8.indo" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="Instagram">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            </a>
+                            <a href="https://x.com/gk8indo" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="X / Twitter">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                            <a href="https://www.facebook.com/gk8official" target="_blank" rel="noopener noreferrer" class="social-circle" aria-label="Facebook">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Center: video card -->
+                <section class="hero-center">
+                    <div class="card-3d-wrapper" id="cardWrapper">
+                        <div class="card-container" id="heroCard">
+                            <video class="hero-card-video" autoplay muted loop playsinline>
+                                <source src="assets/backgroundvideo.webm" type="video/webm">
+                                <source src="assets/backgroundvideo.mp4" type="video/mp4">
+                            </video>
+                            <img src="assets/gk8mo-logo.png" alt="GK8 × Michael Owen" class="card-corner-logo">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Right: country carousel -->
+                <section class="hero-right">
+                    <div class="country-picker-container">
+                        <div class="picker-header">
+                            <h2 class="picker-title">PILIH NEGARA</h2>
+                            <div class="picker-underline" aria-hidden="true"></div>
+                        </div>
+                        <div class="picker-body">
+                            <div class="country-carousel-viewport" id="countryViewport">
+                                <div class="country-carousel-track" id="countryTrack">
+                                    <div class="country-item active" data-index="0" data-code="id">
+                                        <div class="flag-wrapper"><img src="assets/extracted/flag_id.png" alt="Indonesia" class="flag-img" onerror="this.src='assets/flag_id.png'"></div>
+                                        <span class="country-name">INDONESIA</span>
+                                    </div>
+                                    <div class="country-item" data-index="1" data-code="my">
+                                        <div class="flag-wrapper"><img src="assets/extracted/flag_my.png" alt="Malaysia" class="flag-img" onerror="this.src='assets/flag_my.png'"></div>
+                                        <span class="country-name">MALAYSIA</span>
+                                    </div>
+                                    <div class="country-item" data-index="2" data-code="sg">
+                                        <div class="flag-wrapper"><img src="assets/extracted/flag_sg.png" alt="Singapore" class="flag-img" onerror="this.src='assets/flag_sg.png'"></div>
+                                        <span class="country-name">SINGAPORE</span>
+                                    </div>
+                                    <div class="country-item" data-index="3" data-code="th">
+                                        <div class="flag-wrapper"><img src="assets/extracted/flag_th.png" alt="Thailand" class="flag-img" onerror="this.src='assets/flag_th.png'"></div>
+                                        <span class="country-name">THAILAND</span>
+                                    </div>
+                                    <div class="country-item" data-index="4" data-code="vn">
+                                        <div class="flag-wrapper"><img src="assets/extracted/flag_vn.png" alt="Vietnam" class="flag-img" onerror="this.src='assets/flag_vn.png'"></div>
+                                        <span class="country-name">VIETNAM</span>
+                                    </div>
+                                    <div class="country-item" data-index="5" data-code="crypto">
+                                        <div class="flag-wrapper"><img src="assets/extracted/flag_crypto.png" alt="Crypto" class="flag-img" onerror="this.src='assets/flag_crypto.png'"></div>
+                                        <span class="country-name">CRYPTO</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-arrows">
+                                <button class="arrow-btn up" id="btnArrowUp" aria-label="Negara Sebelumnya">
+                                    <img src="assets/extracted/arrow_up.png" alt="Up" class="arrow-icon" onerror="this.style.display='none';this.parentElement.innerHTML+='&#8679;'">
+                                </button>
+                                <button class="arrow-btn down" id="btnArrowDown" aria-label="Negara Berikutnya">
+                                    <img src="assets/extracted/arrow_down.png" alt="Down" class="arrow-icon" onerror="this.style.display='none';this.parentElement.innerHTML+='&#8681;'">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Toast -->
+        <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite"></div>
+
+        <!-- Ambassador -->
+        <section class="ambassador-section reveal">
+            <img src="assets/owen.png" alt="Michael Owen – GK8 Brand Ambassador" class="ambassador-img">
+            <div class="ambassador-overlay">
+                <div class="ambassador-badge">Brand Ambassador</div>
+                <h2 class="ambassador-name">Michael Owen</h2>
+                <div class="ambassador-divider"></div>
+                <p class="ambassador-bio">Michael Owen adalah pemain sepakbola Inggris dan dunia yang telah memenangkan banyak kejuaraan dan penghargaan di Liverpool, Real Madrid, Newcastle, dan Manchester United. Legenda dirinya dimulai saat pertama bermain di Premier League bersama Liverpool tahun 1996/97.</p>
+                <div class="ambassador-awards">
+                    <div class="award-item"><span class="award-icon">🏆</span><span class="award-title">2001 Ballon d'Or Winner</span></div>
+                    <div class="award-item"><span class="award-icon">🏟️</span><span class="award-title">English Football Hall of Fame 2014</span></div>
+                    <div class="award-item"><span class="award-icon">🥇</span><span class="award-title">Premier League, UEFA Cup, UEFA Super Cup &amp; More</span></div>
+                </div>
+                <div class="ambassador-clubs">
+                    <span class="club-tag">Liverpool</span>
+                    <span class="club-tag">Real Madrid</span>
+                    <span class="club-tag">Newcastle United</span>
+                    <span class="club-tag">Manchester United</span>
+                    <span class="club-tag">England NT</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why GK8 -->
+        <section class="why-section">
+            <div class="section-inner">
+                <h2 class="section-title reveal">Apa dan Mengapa GK8</h2>
+                <p class="section-subtitle reveal">GK8 memberikan pelayanan terbaik kepada klien kami dengan tingkat keamanan dan privasi terjamin.</p>
+                <div class="why-grid">
+                    <div class="why-card reveal">
+                        <div class="why-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                        <h3>Keamanan &amp; Privasi</h3>
+                        <p>Privasi setiap pemain adalah fokus utama kami. Di GK8, kami menangani privasi satu langkah di depan. Bermain tanpa khawatir di GK8.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+                        <h3>Bebas Bermain</h3>
+                        <p>GK8 menawarkan prediksi olahraga Free to Play dan memberikan kumpulan hadiah tak terbatas mulai dari $8,888 per bulan.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                        <h3>Pelayanan Bintang 5</h3>
+                        <p>Kami selalu siap membantu kapan saja. Hubungi kami melalui layanan Live Chat 24/7 untuk semua kebutuhan Anda.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                        <h3>Withdrawal Tercepat</h3>
+                        <p>Kami memiliki penyedia gateway pembayaran yang terkenal dan tepercaya. Deposit dan tarik dengan aman dan cepat.</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+                        <h3>Permainan Terbaru</h3>
+                        <p>Kami terus menyediakan game menarik terbaru untuk semua dengan vendor internasional. Temukan game terbaru di GK8!</p>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                        <h3>Internasional</h3>
+                        <p>Kami berkembang pesat di seluruh dunia. Saat ini GK8 tersedia di Malaysia, Indonesia, Singapura, Vietnam, dan Thailand.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commission / Trust -->
+        <section class="commission-section">
+            <div class="section-inner commission-inner">
+                <div class="commission-visual reveal">
+                    <img src="assets/hpanimation.gif" alt="GK8 App" class="commission-img">
+                </div>
+                <div class="commission-text">
+                    <div class="commission-block reveal">
+                        <img src="assets/gambling-01.svg" alt="Gambling Commission" class="commission-logo">
+                        <p>Mengikuti aturan dan peraturan yang ditetapkan oleh Komisi IGaming. Komisi IGaming adalah komite independen yang dibentuk dalam kemitraan dengan otoritas lisensi untuk mengatur IGaming komersial. Penerima Lisensi harus mematuhi aturan dan persyaratan dari buku aturan Kondisi Lisensi dan Kode Praktik (LCCP).</p>
+                    </div>
+                    <div class="commission-block reveal">
+                        <img src="assets/godaddy.svg" alt="GoDaddy SSL" class="commission-logo">
+                        <p>Domain kami diverifikasi dan diamankan oleh GoDaddy.com. GoDaddy adalah penyedia domain terbesar yang menawarkan sertifikat SSL yang memastikan situs web dilindungi — informasi yang melewati situs web Anda menjadi tidak dapat diretas.</p>
+                    </div>
+                    <div class="commission-block reveal">
+                        <img src="assets/bmm-01.svg" alt="BMM Testlabs" class="commission-logo">
+                        <p>GK8 diatur dan diuji oleh BMM Testlabs dan iTech Labs. BMM Testlabs adalah laboratorium pengujian game independen diakui lebih dari 400 yurisdiksi, memiliki 14 kantor di 13 negara, dan diakreditasi dengan ISO 17025.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Service / Stats -->
+        <section class="stats-section">
+            <div class="section-inner stats-inner">
+                <h2 class="section-title reveal">Pelayanan yang Terbaik</h2>
+                <p class="section-subtitle reveal" style="max-width:720px;">Bermainlah dengan GK8, karena Anda akan menikmati pengalaman yang diberikan dalam permainan dan kebebasan naluri Anda.</p>
+                <div class="stats-grid">
+                    <div class="stats-card reveal">
+                        <div class="stats-icon">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="stats-number">+60000</div>
+                        <div class="stats-label">Members</div>
+                    </div>
+                    <div class="stats-card reveal">
+                        <div class="stats-icon">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                        </div>
+                        <div class="stats-number">+10</div>
+                        <div class="stats-label">Payment Gateway</div>
+                    </div>
+                    <div class="stats-card reveal">
+                        <div class="stats-icon">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <div class="stats-number">+75</div>
+                        <div class="stats-label">Provider</div>
+                    </div>
+                    <div class="stats-card reveal">
+                        <div class="stats-icon">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="10" y1="12" x2="10.01" y2="12"/><path d="M14 12h4a2 2 0 0 0 0-4h-3l1-3"/><path d="M14 16h4a2 2 0 0 0 0-4h-3l1 3"/></svg>
+                        </div>
+                        <div class="stats-number">+550</div>
+                        <div class="stats-label">Games</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /page-beranda -->
+
+    <!-- ================================================================
+         PAGE: TENTANG KAMI
+         ================================================================ -->
+    <div id="page-tentang" class="page-section" hidden>
+
+        <section class="about-platform">
+            <div class="section-inner about-platform-inner">
+                <div class="about-platform-text">
+                    <h2 class="about-platform-title reveal">Platform IGaming Nomor 1 di Asia</h2>
+                    <p class="reveal">GK8 adalah platform iGaming terkemuka di Asia, berfungsi sebagai agen taruhan online yang menyediakan akses ke merek-merek teratas di Asia, termasuk Sportsbook, Kasino, Lotere, dan Permainan. Kami merupakan mitra resmi dari brand judi ternama di Asia seperti CMD368, Allbet, Playtech, Spadegaming, dan lainnya.</p>
+                    <p class="reveal">Kami memberikan pilihan terbaik bagi pelanggan untuk menyetor dan menarik saat Anda menang melalui Help2Pay, Transfer Bank Lokal, dan masih banyak lagi. Kami menawarkan kepada anggota kualitas tertinggi di berbagai produk dan layanan kami.</p>
+                    <div class="about-partners reveal">
+                        <span class="about-partner-label">Mitra Resmi:</span>
+                        <div class="about-partner-list">
+                            <span class="partner-tag">CMD368</span>
+                            <span class="partner-tag">Allbet</span>
+                            <span class="partner-tag">Playtech</span>
+                            <span class="partner-tag">Spadegaming</span>
+                            <span class="partner-tag">Evolution</span>
+                            <span class="partner-tag">Pragmatic Play</span>
+                            <span class="partner-tag">GK8 Mobile App</span>
+                        </div>
+                    </div>
+                    <div class="about-support-block reveal">
+                        <h3 class="about-support-title">Tim Dukungan dan Layanan</h3>
+                        <p class="about-support-desc">Tim Dukungan tersedia 24 jam setiap hari, 7 hari seminggu untuk memberikan pemecahan masalah dan bantuan yang diperlukan. Semua informasi pribadi akan diperlakukan dan disimpan dengan cara yang paling ketat dan paling rahasia.</p>
+                    </div>
+                </div>
+                <div class="about-platform-img reveal">
+                    <img src="assets/hpanimation.gif" alt="GK8 Mobile" class="about-mobile-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="testi-section">
+            <div class="section-inner">
+                <h2 class="section-title reveal" style="color:var(--black);">Apa Kata Member Kami</h2>
+                <p class="section-subtitle reveal" style="color:#333;">Kepuasan member adalah prioritas utama kami.</p>
+            </div>
+            <div class="testi-marquee-wrap">
+                <div class="testi-marquee-track">
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Deposit dan Withdrawal sangat cepat dan informatif. Bonus bisa dipakai. Sangat puas dengan pelayanannya!"</p><div class="testi-author"><div class="testi-avatar">ID</div><span>Member Indonesia</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Aplikasinya sangat responsif dan light, bisa digunakan dengan Handphone apapun. Recommended!"</p><div class="testi-author"><div class="testi-avatar">GRL</div><span>Member GRL</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Situs web ini luar biasa! Saya tidak pernah menemukan permasalahan. Layanannya sangat cepat dan membantu."</p><div class="testi-author"><div class="testi-avatar">ARW</div><span>Member ARW</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Platform terpercaya, game lengkap, dan bonus menarik. Saya sudah 3 tahun bergabung dan tidak pernah kecewa."</p><div class="testi-author"><div class="testi-avatar">JK</div><span>Member JK</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Proses withdrawal paling cepat dibanding platform lain. Dalam hitungan menit dana sudah masuk rekening."</p><div class="testi-author"><div class="testi-avatar">SR</div><span>Member SR</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Customer service sangat ramah dan profesional. Semua pertanyaan dijawab dengan cepat dan jelas."</p><div class="testi-author"><div class="testi-avatar">BW</div><span>Member BW</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Deposit dan Withdrawal sangat cepat dan informatif. Bonus bisa dipakai. Sangat puas dengan pelayanannya!"</p><div class="testi-author"><div class="testi-avatar">ID</div><span>Member Indonesia</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Aplikasinya sangat responsif dan light, bisa digunakan dengan Handphone apapun. Recommended!"</p><div class="testi-author"><div class="testi-avatar">GRL</div><span>Member GRL</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Situs web ini luar biasa! Saya tidak pernah menemukan permasalahan. Layanannya sangat cepat dan membantu."</p><div class="testi-author"><div class="testi-avatar">ARW</div><span>Member ARW</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Platform terpercaya, game lengkap, dan bonus menarik. Saya sudah 3 tahun bergabung dan tidak pernah kecewa."</p><div class="testi-author"><div class="testi-avatar">JK</div><span>Member JK</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Proses withdrawal paling cepat dibanding platform lain. Dalam hitungan menit dana sudah masuk rekening."</p><div class="testi-author"><div class="testi-avatar">SR</div><span>Member SR</span></div></div>
+                    <div class="testi-card"><div class="testi-stars">★★★★★</div><p>"Customer service sangat ramah dan profesional. Semua pertanyaan dijawab dengan cepat dan jelas."</p><div class="testi-author"><div class="testi-avatar">BW</div><span>Member BW</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="license-section">
+            <div class="section-inner">
+                <h2 class="section-title reveal" style="color:var(--black);">Lisensi &amp; Keamanan</h2>
+                <p class="section-subtitle reveal" style="color:#444;">GK8 beroperasi di bawah regulasi ketat untuk memastikan keamanan dan kepercayaan member.</p>
+                <div class="license-grid">
+                    <div class="license-card reveal"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg><h3>Licensed &amp; Regulated</h3><p>Berlisensi oleh Pemerintah Pulau Otonom Anjouan, Uni Komoro. Lisensi No. ALSI-202505017-FI1.</p></div>
+                    <div class="license-card reveal"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h3>SSL Secured</h3><p>Domain diverifikasi dan diamankan oleh GoDaddy.com dengan sertifikat SSL penuh untuk perlindungan data.</p></div>
+                    <div class="license-card reveal"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><h3>BMM &amp; iTech Tested</h3><p>Diuji oleh BMM Testlabs dan iTech Labs — diakui lebih dari 400 yurisdiksi di seluruh dunia.</p></div>
+                    <div class="license-card reveal"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/></svg><h3>Responsible Gaming</h3><p>GK8 berkomitmen pada permainan bertanggung jawab dengan fitur pembatasan diri dan kontrol pengeluaran.</p></div>
+                </div>
+                <p class="about-legal reveal">GK8 dimiliki dan dioperasikan oleh GK8 Ltd. Nomor registrasi: 000047418, Alamat terdaftar: Sea Urchin Street, San Pedro, Ambergris Caye, Belize. Hubungi kami di support@gk8.com.</p>
+            </div>
+        </section>
+
+    </div><!-- /page-tentang -->
+
+    <!-- ================================================================
+         PAGE: KETENTUAN & PRIVASI
+         ================================================================ -->
+    <div id="page-ketentuan" class="page-section" hidden>
+
+        <section class="tnc-section">
+            <div class="section-inner">
+                <div class="tnc-header reveal">
+                    <h1 class="tnc-main-title">Syarat &amp; <strong>Ketentuan</strong></h1>
+                    <p class="tnc-intro">Syarat dan Ketentuan yang berkaitan dengan permainan dan promosi yang tersedia di Situs diposting dari waktu ke waktu, yang digabungkan di sini sebagai referensi.</p>
+                </div>
+                <div class="tnc-body">
+
+                    <div class="tnc-block reveal">
+                        <div class="tnc-block-header">
+                            <span class="tnc-number">1</span>
+                            <span class="tnc-section-title">Definisi</span>
+                        </div>
+                        <div class="tnc-block-body">
+                            <p class="tnc-lead">1.1 Ketentuan berikut menentukan syarat dan ketentuan yang mengatur akses dan partisipasi Anda dalam setiap layanan "bermain untuk nyata" yang disediakan oleh Perusahaan.</p>
+                            <ul class="tnc-def-list">
+                                <li><strong>"Game"</strong> berarti sistem game internet di Situs.</li>
+                                <li><strong>"Taruhan"</strong> termasuk taruhan, permainan, dan perjudian melalui Layanan.</li>
+                                <li><strong>"Perangkat"</strong> adalah perangkat akses aplikasi.</li>
+                                <li><strong>"Perangkat Lunak"</strong> adalah program komputer yang diperlukan untuk mengakses Situs.</li>
+                                <li><strong>"Sportsbook"</strong> adalah bagian dari Situs yang menyediakan layanan taruhan olahraga.</li>
+                                <li><strong>"Layanan"</strong> adalah kombinasi dari Game dan Perangkat Lunak.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tnc-block reveal">
+                        <div class="tnc-block-header">
+                            <span class="tnc-number">2</span>
+                            <span class="tnc-section-title">Penggunaan Situs</span>
+                        </div>
+                        <div class="tnc-block-body">
+                            <p class="tnc-lead">2.1 Anda hanya dapat bermain jika:</p>
+                            <ul class="tnc-def-list">
+                                <li>Berusia 18 tahun atau lebih</li>
+                                <li>Berhak secara hukum untuk bermain di wilayah Anda</li>
+                            </ul>
+                            <p>2.2 Jika tidak memenuhi syarat, Perusahaan berhak untuk:</p>
+                            <ul class="tnc-def-list">
+                                <li>Segera menghentikan partisipasi dan menutup akun Anda</li>
+                                <li>Melaporkan Anda ke otoritas terkait</li>
+                            </ul>
+                            <p>2.3 Dengan mencentang pernyataan saat pendaftaran, Anda menyetujui semua Syarat dan Ketentuan.</p>
+                        </div>
+                    </div>
+
+                    <div class="tnc-block reveal">
+                        <div class="tnc-block-header">
+                            <span class="tnc-number">3</span>
+                            <span class="tnc-section-title">Modifikasi</span>
+                        </div>
+                        <div class="tnc-block-body">
+                            <p class="tnc-lead">3.1 Kami dapat memperbarui Syarat dan Ketentuan kapan saja tanpa pemberitahuan.</p>
+                            <p>3.2 Anda bertanggung jawab untuk memeriksa perubahan tersebut.</p>
+                        </div>
+                    </div>
+
+                    <div class="tnc-block reveal">
+                        <div class="tnc-block-header">
+                            <span class="tnc-number">4</span>
+                            <span class="tnc-section-title">Kekayaan Intelektual</span>
+                        </div>
+                        <div class="tnc-block-body">
+                            <p class="tnc-lead">4.1 Semua informasi dan materi di Situs merupakan milik Perusahaan.</p>
+                            <p>4.2 Anda tidak diperbolehkan menyebarluaskan atau memodifikasi tanpa izin.</p>
+                            <p>4.3 Layanan dan Informasi dilindungi oleh hak cipta dan hukum kekayaan intelektual.</p>
+                        </div>
+                    </div>
+
+                    <div class="tnc-block reveal">
+                        <div class="tnc-block-header">
+                            <span class="tnc-number">5</span>
+                            <span class="tnc-section-title">Ketentuan Penggunaan</span>
+                        </div>
+                        <div class="tnc-block-body">
+                            <p class="tnc-lead">Dengan menggunakan Situs, Anda menjamin bahwa Anda:</p>
+                            <ul class="tnc-def-list">
+                                <li>Beroperasi atas nama pribadi</li>
+                                <li>Tidak memiliki keterbatasan hukum</li>
+                                <li>Tidak termasuk penjudi kompulsif</li>
+                                <li>Berusia di atas 18 tahun</li>
+                                <li>Sadar akan risiko kehilangan uang</li>
+                                <li>Tidak menggunakan dana dari aktivitas ilegal</li>
+                                <li>Tidak melakukan tindakan kriminal melalui akun</li>
+                                <li>Tidak mengganggu operasional Situs</li>
+                                <li>Tidak mengunggah virus atau konten ilegal</li>
+                                <li>Tidak menyalahgunakan akun untuk aktivitas yang melanggar hukum</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tnc-block reveal">
+                        <div class="tnc-block-header">
+                            <span class="tnc-number">6</span>
+                            <span class="tnc-section-title">Pendaftaran dan Keanggotaan</span>
+                        </div>
+                        <div class="tnc-block-body">
+                            <p class="tnc-lead">6.1 Anda wajib melengkapi formulir pendaftaran untuk membuka akun.</p>
+                            <p>6.2 Informasi yang diberikan harus valid dan lengkap.</p>
+                            <p>6.3 Kami menjaga kerahasiaan data pribadi Anda, kecuali diwajibkan oleh hukum.</p>
+                            <p>6.4 Anda bertanggung jawab menjaga informasi Anda tetap rahasia.</p>
+                            <p>6.5 Anda wajib memastikan bahwa akses ke Situs legal di wilayah Anda.</p>
+                            <p>6.6 Kami berhak meminta dokumen tambahan untuk verifikasi identitas.</p>
+                            <p>6.7 Kami dapat melakukan verifikasi tambahan berdasarkan informasi yang Anda berikan.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /page-ketentuan -->
+
+    <!-- ================================================================
+         PAGE: LINK ALTERNATIF
+         ================================================================ -->
+    <div id="page-alternatif" class="page-section" hidden>
+
+        <section class="altlink-section">
+            <div class="section-inner">
+                <div class="altlink-header reveal">
+                    <h2 class="altlink-title">Link <strong>Alternatif</strong></h2>
+                    <p class="altlink-desc">Gunakan salah satu link alternatif di bawah ini jika Anda mengalami kesulitan mengakses situs utama GK8. Semua link dijamin resmi dan aman.</p>
+                </div>
+                <div class="altlink-grid">
+                    <a href="https://www.gk8top.com/" target="_blank" rel="noopener" class="altlink-card reveal">
+                        <div class="altlink-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                        <div class="altlink-card-text"><span class="altlink-card-label">Link Alternatif 1</span><span class="altlink-card-url">www.gk8top.com</span></div>
+                        <div class="altlink-card-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Kunjungi</div>
+                    </a>
+                    <a href="https://www.gk8fun.com/" target="_blank" rel="noopener" class="altlink-card reveal">
+                        <div class="altlink-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                        <div class="altlink-card-text"><span class="altlink-card-label">Link Alternatif 2</span><span class="altlink-card-url">www.gk8fun.com</span></div>
+                        <div class="altlink-card-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Kunjungi</div>
+                    </a>
+                    <a href="https://www.gk8hoki.com/" target="_blank" rel="noopener" class="altlink-card reveal">
+                        <div class="altlink-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                        <div class="altlink-card-text"><span class="altlink-card-label">Link Alternatif 3</span><span class="altlink-card-url">www.gk8hoki.com</span></div>
+                        <div class="altlink-card-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Kunjungi</div>
+                    </a>
+                </div>
+                <div class="reveal">
+                    <h3 class="altlink-sub-title">Daftar Berdasarkan Negara</h3>
+                    <div class="altlink-country-grid">
+                        <a href="https://www.gk8syok.com/en-my/register?affid=377" target="_blank" rel="noopener" class="altlink-country-card"><img src="assets/flag_my.png" alt="Malaysia" class="altlink-flag"><div><span class="altlink-country-name">Malaysia</span><span class="altlink-country-url">gk8syok.com</span></div></a>
+                        <a href="https://www.gudangkayu.com/id-id/register?affid=147" target="_blank" rel="noopener" class="altlink-country-card"><img src="assets/flag_id.png" alt="Indonesia" class="altlink-flag"><div><span class="altlink-country-name">Indonesia</span><span class="altlink-country-url">gudangkayu.com</span></div></a>
+                        <a href="https://www.gk8fun.com/en-sg/register?affid=378" target="_blank" rel="noopener" class="altlink-country-card"><img src="assets/flag_sg.png" alt="Singapura" class="altlink-flag"><div><span class="altlink-country-name">Singapura</span><span class="altlink-country-url">gk8fun.com</span></div></a>
+                        <a href="https://www.gk8isan.com/th-th/register?affid=211" target="_blank" rel="noopener" class="altlink-country-card"><img src="assets/flag_th.png" alt="Thailand" class="altlink-flag"><div><span class="altlink-country-name">Thailand</span><span class="altlink-country-url">gk8isan.com</span></div></a>
+                        <a href="https://www.gk8vi.com/vi-vn/register?affid=520" target="_blank" rel="noopener" class="altlink-country-card"><img src="assets/flag_vn.png" alt="Vietnam" class="altlink-flag"><div><span class="altlink-country-name">Vietnam</span><span class="altlink-country-url">gk8vi.com</span></div></a>
+                        <a href="https://www.gk8usdt.com/en-zz?affid=635" target="_blank" rel="noopener" class="altlink-country-card"><img src="assets/flag_crypto.png" alt="Crypto" class="altlink-flag altlink-flag-crypto"><div><span class="altlink-country-name">Crypto</span><span class="altlink-country-url">gk8usdt.com</span></div></a>
+                    </div>
+                </div>
+                <div class="altlink-info reveal">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <p>Jika semua link di atas tidak dapat diakses, silakan hubungi tim Live Chat 24/7 kami untuk mendapatkan link terbaru. Link alternatif diperbarui secara berkala untuk memastikan akses tanpa gangguan.</p>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /page-alternatif -->
+
+    <!-- ================================================================
+         FOOTER — always visible
+         ================================================================ -->
+    <footer class="site-footer">
+        <div class="section-inner footer-inner">
+            <div class="footer-left">
+                <img src="assets/gk8-nav-logo.png" alt="GK8" class="footer-logo"
+                     onerror="this.src='assets/extracted/gk8-nav-logo.png'">
+                <p class="footer-legal">GK8 dimiliki dan dioperasikan oleh GK8 Ltd. Nomor registrasi: 000047418, Alamat terdaftar: Sea Urchin Street, San Pedro, Ambergris Caye, Belize. Hubungi kami di support@gk8.com. GK8 dilisensikan dan diatur oleh Pemerintah Pulau Otonom Anjouan, Uni Komoro dan beroperasi di bawah Lisensi No. ALSI-202505017-FI1.</p>
+                <div class="footer-trust-icons">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                </div>
+            </div>
+            <div class="footer-right">
+                <p class="footer-social-label">Ikuti kami di Media Sosial</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/gk8official" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                    <a href="https://instagram.com/gk8.indo" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="https://x.com/gk8indo" target="_blank" rel="noopener" class="social-btn" aria-label="X / Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://t.me/GK8INDONESIA" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+                    <a href="https://www.linkedin.com/company/gk8-indo-igaming/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link" data-page="tentang">Tentang Kami</a>
+                    <span>|</span>
+                    <a href="#" class="footer-link" data-page="ketentuan">Ketentuan &amp; Privasi</a>
+                    <span>|</span>
+                    <a href="#" class="footer-link" data-page="alternatif">Link Alternatif</a>
+                </div>
+                <p class="footer-copy">&copy;2023 - 2025 GK8&trade; . All rights reserved - GK8 Indonesia IGaming</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
